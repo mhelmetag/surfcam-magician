@@ -12,9 +12,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "release": "react-scripts build && aws s3 sync build/ s3://surfcam-magician",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "release": "npm build && npm aws:clean && npm aws:sync",
+    "aws:clean": "aws s3 rm s3://surfcam-magician --recursive",
+    "aws:sync": "aws s3 sync build/ s3://surfcam-magician --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app",
