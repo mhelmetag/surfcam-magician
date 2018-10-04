@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReactPlayer from 'react-player';
+import SurfCam from './components/SurfCam';
+import StreamUrlInput from './components/StreamUrlInput';
 import './App.css';
 
 class App extends Component {
@@ -25,20 +26,15 @@ class App extends Component {
     return (
       <div className="App">
         <p>Surfcam Magician</p>
-        <div className="SurfCam">
-          <ReactPlayer
-            url={this.state.streamUrl}
-            playing={true}
-            controls={true}
-          />
-        </div>
-        <div className="StreamUrlInput">
-          <input
-            type="text"
-            placeholder={this.state.streamUrl}
-            onKeyPress={this.handleStreamUrlUpdate}
-          />
-        </div>
+        <SurfCam
+          streamUrl={this.state.streamUrl}
+          playing={true}
+          controls={true}
+        />
+        <StreamUrlInput
+          streamUrl={this.state.streamUrl}
+          onKeyPressFunction={this.handleStreamUrlUpdate}
+        />
       </div>
     );
   }
