@@ -15,7 +15,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "semi": [1, "always"]
+    }
   },
   "browserslist": [
     ">0.2%",

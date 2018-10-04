@@ -1,28 +1,58 @@
-export default class StreamUrlFinder {
+class StreamUrlFinder {
+  constructor(spotUrl) {
+    this.spotUrl = spotUrl;
+  }
+
+  async fetchStreamUrl() {
+    const spotId = this.parseSpotId(this.spotUrl);
+    const spotOverviewUrl = this.generateSpotOverviewUrl(spotId);
+    const regionOverview = await this.fetchRegionOverview(spotOverviewUrl);
+    const spotInfo = this.parseRegionOverview(regionOverview, spotId);
+    const streamUrl = this.parseStreamUrl(spotInfo);
+
+    return streamUrl;
+  }
+
   // Like this https://www.surfline.com/surf-report/ventura-point/584204204e65fad6a77096b1
-  static parseSpotId(spotUrl) {
-    let url = new URL(spotUrl)
-    return url.pathname.split("/")[3]
+  parseSpotId(spotUrl) {
+    const url = new URL(spotUrl);
+    return url.pathname.split("/")[3];
   }
 
   // Like this https://services.surfline.com/kbyg/regions/overview?spotId=584204204e65fad6a77096b1
-  static generateSpotOverviewUrl(spotId) {
-    return `https://services.surfline.com/kbyg/regions/overview?spotId=${spotId}`
+  generateSpotOverviewUrl(spotId) {
+    return `https://services.surfline.com/kbyg/regions/overview?spotId=${spotId}`;
   }
 
-  static parseRegionOverview(regionOverview, spotId) {
-    let matchingSpots = regionOverview
+  async fetchRegionOverview(spotOverviewUrl) {
+    return fetch(spotOverviewUrl)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        return Promise.reject(Error("Error while fetching region overview!"));
+      })
+      .then(data => data)
+      .catch(error => {
+        return Promise.reject(Error("Error while fetching region overview!"));
+      });
+  }
+
+  parseRegionOverview(regionOverview, spotId) {
+    const matchingSpots = regionOverview
       .data
       .spots
-      .filter(function(spot) {
-        return spot._id === spotId
-      })
+      .filter(spot => {
+        return spot._id === spotId;
+      });
 
-    return matchingSpots[0]
+    return matchingSpots[0];
   }
 
   // To end up with this https://cams.cdn-surfline.com/wsc-west/wc-venturapointcam.stream/playlist.m3u8
-  static parseStreamUrl(spotOverview) {
-    return spotOverview.cameras[0].streamUrl
+  parseStreamUrl(spotInfo) {
+    return spotInfo.cameras[0].streamUrl;
   }
 }
+
+export default StreamUrlFinder;

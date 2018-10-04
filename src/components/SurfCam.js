@@ -11,7 +11,7 @@ class SurfCam extends Component {
           controls={this.props.controls}
         />
       </div>
-    )
+    );
   }
 }
 
