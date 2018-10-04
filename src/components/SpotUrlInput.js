@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './SpotUrlInput.css';
 
 class SpotUrlInput extends Component {
@@ -14,5 +15,10 @@ class SpotUrlInput extends Component {
     );
   }
 }
+
+SpotUrlInput.propTypes = {
+  spotUrl: PropTypes.string,
+  spotUrlUpdateFunction: PropTypes.func
+};
 
 export default SpotUrlInput;
