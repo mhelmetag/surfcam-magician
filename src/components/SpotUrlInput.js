@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SpotUrlInput.css';
 
 class SpotUrlInput extends Component {
   render() {

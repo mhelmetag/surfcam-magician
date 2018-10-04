@@ -1,0 +1,20 @@
+.SpotUrlInput {
+  padding: 1vh;
+}
+
+.SpotUrlInput input {
+  min-width: 60vh;
+  min-height: 5vh;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: white;
+  font-size: calc(5px + 1vmin);
+  color: white;
+}
+
+.SpotUrlInput input::placeholder {
+  color: grey;
+}

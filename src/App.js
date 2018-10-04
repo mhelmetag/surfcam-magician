@@ -38,11 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>Surfcam Magician</p>
-        <SurfCam
-          streamUrl={this.state.streamUrl}
-          playing={true}
-          controls={true}
-        />
+        <SurfCam streamUrl={this.state.streamUrl} />
         <SpotUrlInput
           spotUrl={this.state.spotUrl}
           spotUrlUpdateFunction={this.handleSpotUrlUpdate}

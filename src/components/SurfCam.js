@@ -7,8 +7,11 @@ class SurfCam extends Component {
       <div className="SurfCam">
         <ReactPlayer
           url={this.props.streamUrl}
-          playing={this.props.playing}
-          controls={this.props.controls}
+          playing={true}
+          controls={true}
+          muted={true}
+          width={'100%'}
+          height={'100%'}
         />
       </div>
     );
