@@ -13,9 +13,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "release": "npm build && npm aws:clean && npm aws:sync",
+    "release": "npm build && npm aws:clean && npm aws:sync && npm aws:invalidate",
     "aws:clean": "aws s3 rm s3://surfcam-magician --recursive",
-    "aws:sync": "aws s3 sync build/ s3://surfcam-magician --acl public-read"
+    "aws:sync": "aws s3 sync build/ s3://surfcam-magician --acl public-read",
+    "aws:invalidate": "aws cloudfront create-invalidation --distribution-id 'ETXUWP3SI20B8' --paths '/index.html'"
   },
   "eslintConfig": {
     "extends": "react-app",
