@@ -14,17 +14,17 @@ This app demonstrates how to translate a Surfline spot URL into the spot's surfc
 
 The static site is hosted on AWS via CloudFront.
 
-There's a script that automates most of the build/deploy process using `react-scipts` and `aws`:
+There's a script that automates the build and deploy process using `react-scipts` and `aws`:
 
 ```sh
 $ yarn release
 ```
 
-Which clears the S3 bucket (you could use versioning instead), syncs the build to S3, and invalidates the files in CloudFront.
+This script clears the S3 bucket (you could use versioning instead), syncs the build to S3 (setting the ACL for each file to `public-read`), and invalidates the files in CloudFront (to bust the cache).
 
 ## How to Run Locally
 
-Just like any create react app like app, just use:
+Like any `create-react-app`-based app, use:
 
 ```sh
 $ yarn start
