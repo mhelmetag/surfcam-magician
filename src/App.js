@@ -9,8 +9,8 @@ class App extends Component {
     super();
 
     this.state = {
-      spotUrl: "https://www.surfline.com/surf-report/sandspit/5842041f4e65fad6a7708966",
-      streamUrl: "https://cams.cdn-surfline.com/abr-3/ngrp:sandspitcam_all/playlist.m3u8"
+      spotUrl: "https://www.surfline.com/surf-report/ventura-point/584204204e65fad6a77096b1",
+      streamUrl: "https://cams.cdn-surfline.com/cdn-wc/wc-venturapoint/playlist.m3u8"
     };
     this.handleSpotUrlUpdate = this.handleSpotUrlUpdate.bind(this);
   }
@@ -23,6 +23,7 @@ class App extends Component {
         try {
           const streamUrlFinder = new StreamUrlFinder(spotUrl);
           const streamUrl = await streamUrlFinder.fetchStreamUrl();
+
           this.setState({
             spotUrl: spotUrl,
             streamUrl: streamUrl
