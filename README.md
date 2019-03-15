@@ -12,15 +12,7 @@ This app demonstrates how to translate a Surfline spot URL into the spot's surfc
 
 ## How to Deploy
 
-The static site is hosted on AWS via CloudFront.
-
-There's a script that automates the build and deploy process using `react-scipts` and `aws`:
-
-```sh
-$ yarn release
-```
-
-This script clears the S3 bucket (you could use versioning instead), syncs the build to S3 (setting the ACL for each file to `public-read`), and invalidates the files in CloudFront (to bust the cache).
+The static site is hosted on Netlify and deployed via their CD pipeline.
 
 ## How to Run Locally
 

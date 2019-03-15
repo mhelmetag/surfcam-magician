@@ -7,16 +7,12 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-player": "^1.6.6",
-    "react-scripts": "2.0.3"
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "release": "yarn build && yarn aws:clean && yarn aws:sync && yarn aws:invalidate",
-    "aws:clean": "aws s3 rm s3://surfcam-magician --recursive",
-    "aws:sync": "aws s3 sync build/ s3://surfcam-magician --acl public-read",
-    "aws:invalidate": "aws cloudfront create-invalidation --distribution-id 'ETXUWP3SI20B8' --paths '/index.html'"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app",

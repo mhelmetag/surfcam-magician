@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactPlayer from 'react-player';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ReactPlayer from "react-player";
+
+import "./SurfCam.css";
 
 class SurfCam extends Component {
   render() {
@@ -11,8 +13,8 @@ class SurfCam extends Component {
           playing={true}
           controls={true}
           muted={true}
-          width={'100%'}
-          height={'100%'}
+          width={"100%"}
+          height={"100%"}
         />
       </div>
     );
@@ -22,6 +24,5 @@ class SurfCam extends Component {
 SurfCam.propTypes = {
   streamUrl: PropTypes.string
 };
-
 
 export default SurfCam;
