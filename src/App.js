@@ -7,8 +7,8 @@ import StreamUrlFinder from "./lib/StreamUrlFinder";
 import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       spotUrl:

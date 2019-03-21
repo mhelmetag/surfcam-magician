@@ -30,21 +30,23 @@ class StreamUrlFinder {
         if (response.ok) {
           return response.json();
         }
-        return Promise.reject(Error("Error while fetching region overview!"));
+
+        throw Error(
+          `Unexpected response while fetching region overview! HTTP status was ${
+            response.status
+          }`
+        );
       })
       .then(data => data)
       .catch(error => {
-        return Promise.reject(Error("Error while fetching region overview!"));
+        throw Error(error.message);
       });
   }
 
   parseRegionOverview(regionOverview, spotId) {
-    const matchingSpots = regionOverview
-      .data
-      .spots
-      .filter(spot => {
-        return spot._id === spotId;
-      });
+    const matchingSpots = regionOverview.data.spots.filter(spot => {
+      return spot._id === spotId;
+    });
 
     return matchingSpots[0];
   }

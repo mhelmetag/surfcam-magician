@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import "./SpotUrlInput.css";
 
-class SpotUrlInput extends Component {
-  render() {
-    return (
-      <div className="SpotUrlInput">
-        <input
-          type="text"
-          placeholder={this.props.spotUrl}
-          onKeyPress={this.props.spotUrlUpdateFunction}
-        />
-      </div>
-    );
-  }
-}
+const SpotUrlInput = ({ spotUrl, spotUrlUpdateFunction }) => {
+  return (
+    <div className="SpotUrlInput">
+      <input
+        type="text"
+        placeholder={spotUrl}
+        onKeyPress={spotUrlUpdateFunction}
+      />
+    </div>
+  );
+};
 
 SpotUrlInput.propTypes = {
   spotUrl: PropTypes.string,
