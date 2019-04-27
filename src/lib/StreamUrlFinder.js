@@ -1,10 +1,6 @@
 class StreamUrlFinder {
-  constructor(spotUrl) {
-    this.spotUrl = spotUrl;
-  }
-
-  async fetchStreamUrl() {
-    const spotId = this.parseSpotId(this.spotUrl);
+  
+  async fetchStreamUrl(spotId) {
     const spotOverviewUrl = this.generateSpotOverviewUrl(spotId);
     const regionOverview = await this.fetchRegionOverview(spotOverviewUrl);
     const spotInfo = this.parseRegionOverview(regionOverview, spotId);

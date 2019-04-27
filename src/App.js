@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import SurfCam from "./components/SurfCam";
 import SpotUrlInput from "./components/SpotUrlInput";
@@ -27,14 +28,7 @@ class App extends Component {
 
       if (spotUrl !== "") {
         try {
-          const streamUrlFinder = new StreamUrlFinder(spotUrl);
-          const streamUrl = await streamUrlFinder.fetchStreamUrl();
-
-          this.setState({
-            spotUrl: spotUrl,
-            streamUrl: streamUrl,
-            error: undefined
-          });
+          
         } catch (error) {
           this.setState({
             error: `Error: ${error.message}`
@@ -52,7 +46,12 @@ class App extends Component {
     return (
       <div className="App">
         <p>Surfcam Magician</p>
-        <SurfCam streamUrl={this.state.streamUrl} />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" render={(props) => <SurfCam {...props} streamUrl={this.state.streamUrl} />} />
+            <Route path="/:id" component={SurfCam} />
+          </Switch>
+        </BrowserRouter>
         {this.state.error && this.errorComponent()}
         <SpotUrlInput
           spotUrl={this.state.spotUrl}
