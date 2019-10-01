@@ -6,10 +6,10 @@ import StreamUrlFinder from "../lib/StreamUrlFinder";
 
 import "./SurfCamContainer.css";
 
-const SurfCamContainer = ({ spotId }) => {
+function useStreamUrls(spotId) {
   const [streamUrls, setStremUrls] = useState([]);
 
-  async function updateStreamUrls(streamUrls) {
+  function updateStreamUrls(streamUrls) {
     setStremUrls(streamUrls);
   }
 
@@ -30,7 +30,14 @@ const SurfCamContainer = ({ spotId }) => {
     }
 
     fetchData();
-  });
+  }, [spotId]);
+
+  return streamUrls;
+}
+
+const SurfCamContainer = ({ match, defaultSpotId }) => {
+  const spotId = defaultSpotId ? defaultSpotId : match.params.id;
+  const streamUrls = useStreamUrls(spotId);
 
   return (
     <div className="SurfCamContainer">
@@ -42,7 +49,7 @@ const SurfCamContainer = ({ spotId }) => {
 };
 
 SurfCamContainer.propTypes = {
-  spotId: PropTypes.string
+  defaultSpotId: PropTypes.string
 };
 
 export default SurfCamContainer;
