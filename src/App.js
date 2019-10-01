@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
-import SurfCam from "./components/SurfCam";
 import SpotUrlInput from "./components/SpotUrlInput";
 import StreamUrlFinder from "./lib/StreamUrlFinder";
 
 import "./App.css";
+import SurfCamContainer from "./components/SurfCamContainer";
+
+// Main Quote - When you're itching for the waves, the only lotion is the ocean.
+// 404 - Just 'cause you're riding the high tide, doesn't mean you've chosen the right course.
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +48,8 @@ class App extends Component {
   }
 
   errorComponent() {
+    // Error - Sometimes, the bird sings, sometimes it coughs up a worm.
+
     return <p>{this.state.error}</p>;
   }
 
@@ -52,7 +57,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>Surfcam Magician</p>
-        <SurfCam streamUrl={this.state.streamUrl} />
+        <SurfCamContainer spotId="584204204e65fad6a77096b1" />
         {this.state.error && this.errorComponent()}
         <SpotUrlInput
           spotUrl={this.state.spotUrl}

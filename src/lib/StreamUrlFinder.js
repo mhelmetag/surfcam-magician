@@ -1,18 +1,4 @@
 class StreamUrlFinder {
-  constructor(spotUrl) {
-    this.spotUrl = spotUrl;
-  }
-
-  async fetchStreamUrl() {
-    const spotId = this.parseSpotId(this.spotUrl);
-    const spotOverviewUrl = this.generateSpotOverviewUrl(spotId);
-    const regionOverview = await this.fetchRegionOverview(spotOverviewUrl);
-    const spotInfo = this.parseRegionOverview(regionOverview, spotId);
-    const streamUrl = this.parseStreamUrl(spotInfo);
-
-    return streamUrl;
-  }
-
   // Like this https://www.surfline.com/surf-report/ventura-point/584204204e65fad6a77096b1
   parseSpotId(spotUrl) {
     const url = new URL(spotUrl);
@@ -32,9 +18,7 @@ class StreamUrlFinder {
         }
 
         throw Error(
-          `Unexpected response while fetching region overview! HTTP status was ${
-            response.status
-          }`
+          `Unexpected response while fetching region overview! HTTP status was ${response.status}`
         );
       })
       .then(data => data)
@@ -51,9 +35,9 @@ class StreamUrlFinder {
     return matchingSpots[0];
   }
 
-  // To end up with this https://cams.cdn-surfline.com/wsc-west/wc-venturapointcam.stream/playlist.m3u8
-  parseStreamUrl(spotInfo) {
-    return spotInfo.cameras[0].streamUrl;
+  // To end up with this [https://cams.cdn-surfline.com/wsc-west/wc-venturapointcam.stream/playlist.m3u8]
+  parseStreamUrls(regionalOverview) {
+    return regionalOverview.cameras.map(camera => camera.streamUrl);
   }
 }
 
