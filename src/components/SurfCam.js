@@ -20,7 +20,7 @@ const SurfCam = ({ streamUrl }) => {
 };
 
 SurfCam.propTypes = {
-  streamUrl: PropTypes.string
+  streamUrl: PropTypes.string.isRequired
 };
 
 export default SurfCam;
