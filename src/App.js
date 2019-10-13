@@ -15,7 +15,7 @@ const App = () => {
       <div className="App">
         <p>Surfcam Magician</p>
         <Switch>
-          <Route path="spot/:id">
+          <Route path="/spot/:id">
             <SurfCamContainer />
           </Route>
           <Route path="/">

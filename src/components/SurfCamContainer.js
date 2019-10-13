@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import SurfCam from "./SurfCam";
@@ -35,8 +36,9 @@ function useStreamUrls(spotId) {
   return streamUrls;
 }
 
-const SurfCamContainer = ({ match, defaultSpotId }) => {
-  const spotId = defaultSpotId ? defaultSpotId : match.params.id;
+const SurfCamContainer = ({ defaultSpotId }) => {
+  const { id } = useParams();
+  const spotId = defaultSpotId ? defaultSpotId : id;
   const streamUrls = useStreamUrls(spotId);
 
   return (
