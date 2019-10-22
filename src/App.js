@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import SurfCamContainer from "./components/SurfCamContainer";
+import SpotPicker from "./components/SpotPicker";
 
 // Main Quote - When you're itching for the waves, the only lotion is the ocean.
 // 404 - Just 'cause you're riding the high tide, doesn't mean you've chosen the right course.
@@ -22,6 +23,7 @@ const App = () => {
             <SurfCamContainer defaultSpotId="584204204e65fad6a77096b1" />
           </Route>
         </Switch>
+        <SpotPicker />
       </div>
     </Router>
   );

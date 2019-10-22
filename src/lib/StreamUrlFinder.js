@@ -1,13 +1,6 @@
 // A class with a few helpers to take a spotId and end up with an array of streamUrls
 // through the region overview service
 class StreamUrlFinder {
-  // Takes https://www.surfline.com/surf-report/ventura-point/584204204e65fad6a77096b1
-  // and returns 584204204e65fad6a77096b1
-  parseSpotId(spotUrl) {
-    const url = new URL(spotUrl);
-    return url.pathname.split("/")[3];
-  }
-
   // Takes 584204204e65fad6a77096b1
   // and returns https://services.surfline.com/kbyg/regions/overview?spotId=584204204e65fad6a77096b1
   generateSpotOverviewUrl(spotId) {
