@@ -32,6 +32,9 @@ function useContinents() {
 const SpotPicker = () => {
   const continents = useContinents();
 
+  // At spot level, it'd probably be best to go for the region overview
+  // since that has camera info (to filter out spot with no cams)
+
   return (
     <div className="SpotPicker">
       <select defaultValue={"default"}>
