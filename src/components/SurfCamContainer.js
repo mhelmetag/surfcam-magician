@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import SurfCam from "./SurfCam";
-import StreamUrlFinder from "../lib/StreamUrlFinder";
+import RegionOverviewHelper from "../lib/RegionOverviewHelper";
 
 import "./SurfCamContainer.css";
 
@@ -16,16 +16,15 @@ function useStreamUrls(spotId) {
 
   useEffect(() => {
     async function fetchData() {
-      const streamUrlFinder = new StreamUrlFinder();
-      const spotOverviewUrl = streamUrlFinder.generateSpotOverviewUrl(spotId);
-      const regionOverview = await streamUrlFinder.fetchRegionOverview(
-        spotOverviewUrl
-      );
-      const spotInfo = streamUrlFinder.parseRegionOverview(
-        regionOverview,
+      const regionOverviewHelper = new RegionOverviewHelper();
+      const spotOverviewUrl = regionOverviewHelper.generateSpotOverviewUrl(
         spotId
       );
-      const streamUrls = streamUrlFinder.parseStreamUrls(spotInfo);
+      const regionOverview = await regionOverviewHelper.fetchRegionOverview(
+        spotOverviewUrl
+      );
+      const spotInfo = regionOverviewHelper.findSpot(regionOverview, spotId);
+      const streamUrls = regionOverviewHelper.parseStreamUrls(spotInfo);
 
       updateStreamUrls(streamUrls);
     }
