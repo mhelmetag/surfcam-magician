@@ -2,11 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
 
-import "./SurfCam.css";
-
 const SurfCam = ({ streamUrl }) => {
   return (
-    <div className="SurfCam">
+    <div className="column">
       <ReactPlayer
         url={streamUrl}
         playing={true}

@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import "./App.css";
-
 import SurfCamContainer from "./components/SurfCamContainer";
 import SpotPicker from "./components/SpotPicker";
 
@@ -13,18 +11,54 @@ import SpotPicker from "./components/SpotPicker";
 const App = () => {
   return (
     <Router>
-      <div className="App">
-        <p>Surfcam Magician</p>
-        <Switch>
-          <Route path="/spot/:id">
-            <SurfCamContainer />
-          </Route>
-          <Route path="/">
-            <SurfCamContainer defaultSpotId="584204204e65fad6a77096b1" />
-          </Route>
-        </Switch>
-        <SpotPicker />
-      </div>
+      <section
+        className="section"
+        style={{ background: "linear-gradient(to bottom right, blue, green" }}
+      >
+        <div className="container">
+          <div className="level">
+            <div className="level-left">
+              <div className="level-item">
+                <h1 className="title has-text-white">Surfcam Magician</h1>
+              </div>
+            </div>
+            <div className="level-right">
+              <div className="level-item">
+                <a
+                  className="level-item"
+                  href="https://github.com/mhelmetag/surfcam-magician"
+                >
+                  <span className="icon is-large">
+                    <i className="fab fa-lg fa-github has-text-white"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="section">
+        <div className="container is-fluid">
+          <Switch>
+            <Route path="/spot/:id">
+              <SurfCamContainer />
+            </Route>
+            <Route path="/">
+              <SurfCamContainer defaultSpotId="584204204e65fad6a77096b1" />
+            </Route>
+          </Switch>
+        </div>
+      </section>
+      <section className="section">
+        <div className="container is-fluid">
+          <SpotPicker />
+        </div>
+      </section>
+      <footer className="footer">
+        <div className="content has-text-centered">
+          <p>Built by Maxworld Technologies</p>
+        </div>
+      </footer>
     </Router>
   );
 };

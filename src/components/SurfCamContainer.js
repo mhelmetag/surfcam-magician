@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 import SurfCam from "./SurfCam";
 import RegionOverviewHelper from "../lib/RegionOverviewHelper";
 
-import "./SurfCamContainer.css";
-
 function useStreamUrls(spotId) {
   const [streamUrls, setStremUrls] = useState([]);
 
@@ -41,7 +39,7 @@ const SurfCamContainer = ({ defaultSpotId }) => {
   const streamUrls = useStreamUrls(spotId);
 
   return (
-    <div className="SurfCamContainer">
+    <div className="columns">
       {streamUrls.map((streamUrl, index) => {
         return <SurfCam key={index} streamUrl={streamUrl} />;
       })}
