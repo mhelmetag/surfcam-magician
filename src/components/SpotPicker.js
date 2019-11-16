@@ -7,7 +7,13 @@ import SelectWithDefault from "./SelectWithDefault";
 
 const SpotPicker = () => {
   let history = useHistory();
-  let [location, selected, setSelected, setLocation] = useLocation();
+  let [
+    location,
+    selected,
+    setSelected,
+    setLocation,
+    setLoading
+  ] = useLocation();
 
   return (
     <div>
@@ -17,6 +23,7 @@ const SpotPicker = () => {
             selectedOption={selected.continent}
             options={location.continents}
             selectFunc={event => {
+              setLoading(true);
               setSelected({
                 continent: event.target.value,
                 country: null,
@@ -40,6 +47,7 @@ const SpotPicker = () => {
             selectedOption={selected.country}
             options={location.countries}
             selectFunc={event => {
+              setLoading(true);
               setSelected({
                 ...selected,
                 country: event.target.value,
@@ -57,6 +65,7 @@ const SpotPicker = () => {
             selectedOption={selected.region}
             options={location.regions}
             selectFunc={event => {
+              setLoading(true);
               setSelected({
                 ...selected,
                 region: event.target.value,
@@ -73,6 +82,7 @@ const SpotPicker = () => {
             selectedOption={selected.area}
             options={location.areas}
             selectFunc={event => {
+              setLoading(true);
               setSelected({
                 ...selected,
                 area: event.target.value,
@@ -88,6 +98,7 @@ const SpotPicker = () => {
             <select
               defaultValue={selected.spot || "default"}
               onChange={event => {
+                setLoading(true);
                 setSelected({ ...selected, spot: event.target.value });
               }}
             >

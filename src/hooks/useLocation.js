@@ -3,14 +3,6 @@ import { useState, useEffect } from "react";
 import TaxonomyHelper from "../lib/TaxonomyHelper";
 import RegionOverviewHelper from "../lib/RegionOverviewHelper";
 
-// At area level (searching for spots), it'd probably be best to go for the region overview
-// since that has camera info (to filter out spot with no cams)
-
-// For areas, need to pull "subregion" key and then use for region overview with subregionId in query string
-// https://services.surfline.com/kbyg/regions/overview?subregionId=58581a836630e24c4487900c
-// Then data.spots is spots
-// Only use spots with spot.camera.length greater or equal to 1
-
 function useLocation() {
   const [location, setLocation] = useState({
     continents: [],
@@ -26,6 +18,7 @@ function useLocation() {
     area: null,
     spot: null
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const taxonomyHelper = new TaxonomyHelper();
@@ -35,6 +28,7 @@ function useLocation() {
       const tree = await taxonomyHelper.fetchContinents();
       const continents = taxonomyHelper.processTaxonomyTree(tree);
 
+      setLoading(false);
       updateContinents(continents);
     }
 
@@ -46,6 +40,7 @@ function useLocation() {
       const tree = await taxonomyHelper.fetchTaxonomyTree(selected.continent);
       const countries = taxonomyHelper.processTaxonomyTree(tree);
 
+      setLoading(false);
       updateCountries(countries);
     }
 
@@ -57,6 +52,7 @@ function useLocation() {
       const tree = await taxonomyHelper.fetchTaxonomyTree(selected.country);
       const regions = taxonomyHelper.processTaxonomyTree(tree);
 
+      setLoading(false);
       updateRegions(regions);
     }
 
@@ -68,6 +64,7 @@ function useLocation() {
       const tree = await taxonomyHelper.fetchTaxonomyTree(selected.region);
       const areas = taxonomyHelper.processTaxonomyTreeForArea(tree);
 
+      setLoading(false);
       updateAreas(areas);
     }
 
@@ -84,6 +81,7 @@ function useLocation() {
       );
       const spots = regionOverviewHelper.processRegionOverview(regionOverview);
 
+      setLoading(false);
       updateSpots(spots);
     }
 
@@ -95,24 +93,26 @@ function useLocation() {
       fetchContenents();
     }
 
-    if (selected.continent && location.countries.length === 0) {
+    if (selected.continent && location.countries.length === 0 && loading) {
       fetchCountries();
     }
 
-    if (selected.country && location.regions.length === 0) {
+    if (selected.country && location.regions.length === 0 && loading) {
       fetchRegions();
     }
 
-    if (selected.region && location.areas.length === 0) {
+    if (selected.region && location.areas.length === 0 && loading) {
       fetchAreas();
     }
 
-    if (selected.area && location.spots.length === 0) {
+    if (selected.area && location.spots.length === 0 && loading) {
       fetchSpots();
     }
-  }, [location, selected]);
 
-  return [location, selected, setSelected, setLocation];
+    console.log(loading);
+  }, [location, selected, loading]);
+
+  return [location, selected, setSelected, setLocation, setLoading];
 }
 
 export default useLocation;
