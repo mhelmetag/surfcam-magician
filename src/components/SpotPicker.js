@@ -5,6 +5,17 @@ import useLocation from "../hooks/useLocation";
 
 import SelectWithDefault from "./SelectWithDefault";
 
+const sortByName = (items) => {
+  const sortedNames = items
+    .map(item => item.name)
+    .sort((a, b) => a.localeCompare(b));
+
+  return sortedNames.reduce((sortedItems, sortedName) => {
+    const item = items.find(item => item.name === sortedName);
+    return sortedItems.concat(item);
+  }, []);
+};
+
 const SpotPicker = () => {
   let history = useHistory();
   let [
@@ -21,7 +32,7 @@ const SpotPicker = () => {
         <div className="level-item">
           <SelectWithDefault
             selectedOption={selected.continent}
-            options={location.continents}
+            options={sortByName(location.continents)}
             selectFunc={event => {
               setLoading(true);
               setSelected({
@@ -45,7 +56,7 @@ const SpotPicker = () => {
         <div className="level-item">
           <SelectWithDefault
             selectedOption={selected.country}
-            options={location.countries}
+            options={sortByName(location.countries)}
             selectFunc={event => {
               setLoading(true);
               setSelected({
@@ -63,7 +74,7 @@ const SpotPicker = () => {
         <div className="level-item">
           <SelectWithDefault
             selectedOption={selected.region}
-            options={location.regions}
+            options={sortByName(location.regions)}
             selectFunc={event => {
               setLoading(true);
               setSelected({
@@ -80,7 +91,7 @@ const SpotPicker = () => {
         <div className="level-item">
           <SelectWithDefault
             selectedOption={selected.area}
-            options={location.areas}
+            options={sortByName(location.areas)}
             selectFunc={event => {
               setLoading(true);
               setSelected({
@@ -105,7 +116,7 @@ const SpotPicker = () => {
               <option value="default" disabled>
                 Select a Spot
               </option>
-              {location.spots.map(spot => {
+              {sortByName(location.spots).map(spot => {
                 return (
                   <option
                     key={spot.id}
