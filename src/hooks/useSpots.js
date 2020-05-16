@@ -7,7 +7,7 @@ export const useSpots = () => {
   const [index, setIndex] = React.useState(0);
 
   const getSpot = (id) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       if (spots[id]) {
         resolve(spots[id]);
       } else {

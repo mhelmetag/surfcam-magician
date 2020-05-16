@@ -109,6 +109,38 @@ const Breadcrumb = () => {
     );
   };
 
+  const Crumb = ({ taxonomy }) => {
+    const path = taxonomy.enumeratedPath.split(",") || [];
+
+    return (
+      <nav className="breadcrumb">
+        <ul>
+          <li>
+            <p style={{ paddingRight: "0.75em" }}>Earth</p>
+          </li>
+          <li>
+            <p style={{ paddingLeft: "0.75em", paddingRight: "0.75em" }}>
+              {path[2] || "Continent"}
+            </p>
+          </li>
+          <li>
+            <p style={{ paddingLeft: "0.75em", paddingRight: "0.75em" }}>
+              {path[3] || "Country"}
+            </p>
+          </li>
+          <li>
+            <p style={{ paddingLeft: "0.75em", paddingRight: "0.75em" }}>
+              {path[4] || "Region"}
+            </p>
+          </li>
+          <li>
+            <p style={{ paddingLeft: "0.75em" }}>{path[5] || "Area"}</p>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+
   const List = ({ taxonomy }) => {
     if (index === 5) {
       return <SubregionList taxonomy={taxonomy} />;
@@ -117,7 +149,20 @@ const Breadcrumb = () => {
     }
   };
 
-  return <div>{spots[activeId] && <List taxonomy={spots[activeId]} />}</div>;
+  const Complete = ({ taxonomy }) => {
+    if (taxonomy) {
+      return (
+        <div>
+          <Crumb taxonomy={spots[activeId]} />
+          <List taxonomy={spots[activeId]} />
+        </div>
+      );
+    } else {
+      return <div></div>;
+    }
+  };
+
+  return <Complete taxonomy={spots[activeId]} />;
 };
 
 export default Breadcrumb;
