@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom";
 
 import SurfCamContainer from "./components/SurfCamContainer";
 import SpotPicker from "./components/SpotPicker";
@@ -10,29 +15,53 @@ import { EARTH_ID } from "./lib/TaxonomyHelper";
 // 404 - Just 'cause you're riding the high tide, doesn't mean you've chosen the right course.
 // Error - Sometimes, the bird sings, sometimes it coughs up a worm.
 
-const App = () => {
-  const { getSpot, spots, activeId } = useSpots();
+const sortByName = (items) => {
+  const sortedNames = items
+    .map((item) => item.name)
+    .sort((a, b) => a.localeCompare(b));
+
+  return sortedNames.reduce((sortedItems, sortedName) => {
+    const item = items.find((item) => item.name === sortedName);
+    return sortedItems.concat(item);
+  }, []);
+};
+
+const Breadcrumb = () => {
+  let history = useHistory();
+  const { getSpot, spots, activeId, index } = useSpots();
 
   React.useEffect(() => {
     getSpot(EARTH_ID);
   }, []);
 
   return (
-    <Router>
-      <section>
-        {spots[activeId] &&
-          spots[activeId].contains.map((spot) => {
-            return (
-              <div
-                onClick={() => {
+    <section>
+      {spots[activeId] &&
+        sortByName(spots[activeId].contains).map((spot) => {
+          return (
+            <div
+              onClick={() => {
+                if (index === 5) {
+                  if (spot.cameras.length > 1) {
+                    history.push(`/spot/${spot.spot}`);
+                  }
+                } else {
                   getSpot(spot._id);
-                }}
-              >
-                {spot.name}
-              </div>
-            );
-          })}
-      </section>
+                }
+              }}
+            >
+              {spot.name}
+            </div>
+          );
+        })}
+    </section>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <Breadcrumb />
       <section
         className="section"
         style={{ background: "linear-gradient(to bottom right, blue, green" }}
