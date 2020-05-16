@@ -1,10 +1,6 @@
 export const EARTH_ID = "58f7ed51dadb30820bb38782";
 
 class TaxonomyHelper {
-  async fetchContinents() {
-    return this.fetchTaxonomyTree(EARTH_ID);
-  }
-
   async fetchTaxonomyTree(id, maxDepth = 0) {
     const taxonomyUrl = this.generateTaxonomyUrl(id, maxDepth);
 
@@ -33,31 +29,6 @@ class TaxonomyHelper {
     searchParams.append("maxDepth", maxDepth);
 
     return `${baseUrl}?${searchParams.toString()}`;
-  }
-
-  processTaxonomyTree(tree) {
-    const locations = tree.contains || [];
-
-    return locations.map((location) => {
-      return {
-        name: location.name,
-        id: location._id,
-      };
-    });
-  }
-
-  processTaxonomyTreeForArea(tree) {
-    const locations = tree.contains || [];
-    const subregions = locations.filter(
-      (location) => location.type === "subregion"
-    );
-
-    return subregions.map((subregion) => {
-      return {
-        name: subregion.name,
-        id: subregion.subregion,
-      };
-    });
   }
 }
 
