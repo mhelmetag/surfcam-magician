@@ -11,9 +11,11 @@ import Breadcrumb from "./components/Breadcrumb";
 const App = () => {
   return (
     <Router>
-      <section
+      <header
         className="section"
-        style={{ background: "linear-gradient(to bottom right, blue, green" }}
+        style={{
+          background: "linear-gradient(to bottom right, blue, green",
+        }}
       >
         <div className="container">
           <div className="level">
@@ -36,7 +38,7 @@ const App = () => {
             </div>
           </div>
         </div>
-      </section>
+      </header>
       <section className="section">
         <div className="container is-fluid">
           <Switch>

@@ -41,28 +41,40 @@ const Breadcrumb = () => {
     );
 
     return (
-      <div>
-        {sortByName(validSubregions).map((subregion) => {
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "column",
+          height: "40vh",
+          overflowX: "scroll",
+        }}
+      >
+        {sortByName(validSubregions).map((subregion, index) => {
           return (
-            <div>
-              <div key={subregion._id} style={{ fontWeight: "bold" }}>
-                {subregion.name}
+            <div key={subregion._id} style={{ paddingTop: "3vh" }}>
+              <p style={{ fontWeight: "bold" }}>{subregion.name}</p>
+              <div>
+                {sortByName(groupedSpots[subregion._id]).map((spot) => {
+                  return (
+                    <p
+                      key={spot._id}
+                      onClick={() => {
+                        if (spot.cameras.length > 0) {
+                          history.push(`/spot/${spot.spot}`);
+                        }
+                      }}
+                    >
+                      {spot.name}
+                      {spot.cameras.length > 0 && (
+                        <span className="icon has-text-info">
+                          <i className="fas fa-sm fa-video"></i>
+                        </span>
+                      )}
+                    </p>
+                  );
+                })}
               </div>
-              {sortByName(groupedSpots[subregion._id]).map((spot) => {
-                return (
-                  <div
-                    key={spot._id}
-                    onClick={() => {
-                      if (spot.cameras.length > 0) {
-                        history.push(`/spot/${spot.spot}`);
-                      }
-                    }}
-                  >
-                    {spot.name}
-                    {spot.cameras.length <= 0 && " - No cameras :( ..."}
-                  </div>
-                );
-              })}
             </div>
           );
         })}
@@ -72,7 +84,15 @@ const Breadcrumb = () => {
 
   const TaxonomyList = ({ taxonomy }) => {
     return (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "column",
+          height: "40vh",
+          overflowX: "scroll",
+        }}
+      >
         {sortByName(taxonomy.contains).map((taxonomy) => {
           return (
             <div
