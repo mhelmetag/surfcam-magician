@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import SurfCamContainer from "./components/SurfCamContainer";
-import SpotPicker from "./components/SpotPicker";
+import Breadcrumb from "./components/Breadcrumb";
 
 // Main Quote - When you're itching for the waves, the only lotion is the ocean.
 // 404 - Just 'cause you're riding the high tide, doesn't mean you've chosen the right course.
@@ -11,9 +11,11 @@ import SpotPicker from "./components/SpotPicker";
 const App = () => {
   return (
     <Router>
-      <section
+      <header
         className="section"
-        style={{ background: "linear-gradient(to bottom right, blue, green" }}
+        style={{
+          background: "linear-gradient(to bottom right, blue, green",
+        }}
       >
         <div className="container">
           <div className="level">
@@ -36,7 +38,7 @@ const App = () => {
             </div>
           </div>
         </div>
-      </section>
+      </header>
       <section className="section">
         <div className="container is-fluid">
           <Switch>
@@ -51,7 +53,7 @@ const App = () => {
       </section>
       <section className="section">
         <div className="container is-fluid">
-          <SpotPicker />
+          <Breadcrumb />
         </div>
       </section>
       <footer className="footer">
