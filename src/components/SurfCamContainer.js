@@ -7,6 +7,7 @@ import RegionOverviewHelper from "../lib/RegionOverviewHelper";
 
 function useStreamUrls(spotId) {
   const [streamUrls, setStremUrls] = useState([]);
+  const [spotName, setSpotName] = useState(null);
 
   function updateStreamUrls(streamUrls) {
     setStremUrls(streamUrls);
@@ -24,19 +25,24 @@ function useStreamUrls(spotId) {
       const spotInfo = regionOverviewHelper.findSpot(regionOverview, spotId);
       const streamUrls = regionOverviewHelper.parseStreamUrls(spotInfo);
 
+      setSpotName(spotInfo.name);
       updateStreamUrls(streamUrls);
     }
 
     fetchData();
   }, [spotId]);
 
-  return streamUrls;
+  return { streamUrls, spotName };
 }
 
 const SurfCamContainer = ({ defaultSpotId }) => {
   const { id } = useParams();
   const spotId = defaultSpotId ? defaultSpotId : id;
-  const streamUrls = useStreamUrls(spotId);
+  const { streamUrls, spotName } = useStreamUrls(spotId);
+
+  if (spotName) {
+    document.title = `Surfcam Magician - ${spotName}`;
+  }
 
   return (
     <div className="columns">
@@ -48,7 +54,7 @@ const SurfCamContainer = ({ defaultSpotId }) => {
 };
 
 SurfCamContainer.propTypes = {
-  defaultSpotId: PropTypes.string
+  defaultSpotId: PropTypes.string,
 };
 
 export default SurfCamContainer;
