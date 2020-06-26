@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { useSpots } from "../hooks/useSpots";
 import { EARTH_ID } from "../lib/TaxonomyHelper";
 
+import "./Breadcrumb.css";
+
 const sortByName = (items) => {
   const sortedNames = items
     .map((item) => item.name)
@@ -58,6 +60,7 @@ const Breadcrumb = () => {
                 {sortByName(groupedSpots[subregion._id]).map((spot) => {
                   return (
                     <p
+                      className={spot.cameras.length > 0 ? "clickable" : ""}
                       key={spot._id}
                       onClick={() => {
                         if (spot.cameras.length > 0) {
@@ -96,6 +99,7 @@ const Breadcrumb = () => {
         {sortByName(taxonomy.contains).map((taxonomy) => {
           return (
             <div
+              className="clickable"
               key={taxonomy._id}
               onClick={() => {
                 getSpot(taxonomy._id);
