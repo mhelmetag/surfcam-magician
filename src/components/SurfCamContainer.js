@@ -35,26 +35,49 @@ function useStreamUrls(spotId) {
   return { streamUrls, spotName };
 }
 
-const SurfCamContainer = ({ defaultSpotId }) => {
+const SurfCamContainer = ({ defaultSpotId, favorites }) => {
   const { id } = useParams();
+  const { favoritesMap, addFavorite, removeFavorite } = favorites;
   const spotId = defaultSpotId ? defaultSpotId : id;
   const { streamUrls, spotName } = useStreamUrls(spotId);
 
-  if (spotName) {
-    document.title = `Surfcam Magician - ${spotName}`;
-  }
+  const title = spotName || spotId;
+  document.title = `Surfcam Magician - ${title}`;
+
+  const isFavorite = !!favoritesMap[spotId];
+
+  const onFavoriteClick = () => {
+    if (isFavorite) {
+      removeFavorite(spotId);
+    } else {
+      addFavorite(spotId, title);
+    }
+  };
 
   return (
-    <div className="columns">
-      {streamUrls.map((streamUrl, index) => {
-        return <SurfCam key={index} streamUrl={streamUrl} />;
-      })}
-    </div>
+    <>
+      <button style={{ marginRight: '10px' }} onClick={onFavoriteClick}>
+        {isFavorite ? 'Unfavorite' : 'Favorite'}
+      </button>
+      <span>
+        {title}
+      </span>
+      <div className="columns">
+        {streamUrls.map((streamUrl, index) => {
+          return <SurfCam key={index} streamUrl={streamUrl} />;
+        })}
+      </div>
+    </>
   );
 };
 
 SurfCamContainer.propTypes = {
   defaultSpotId: PropTypes.string,
+  favorites: PropTypes.shape({
+    favoritesMap: PropTypes.shape({}),
+    addFavorite: PropTypes.func,
+    removeFavorite: PropTypes.func
+  })
 };
 
 export default SurfCamContainer;
