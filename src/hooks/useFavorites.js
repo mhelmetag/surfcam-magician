@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const STORAGE_KEY = 'surfcam_magician_favorites';
 
@@ -10,7 +10,7 @@ function getFavoritesMap() {
 function addFavorite(spotId, title) {
   const map = getFavoritesMap();
   map[spotId] = title || spotId;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(map || {}));
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
   return map;
 }
 
@@ -22,7 +22,7 @@ function removeFavorite(spotId) {
 }
 
 export function useFavorites() {
-  const [favoritesMap, setFavorites] = useState(getFavoritesMap());
+  const [favoritesMap, setFavorites] = React.useState(getFavoritesMap());
   const add = (spotId, title) => setFavorites(addFavorite(spotId, title));
   const remove = (spotId) => setFavorites(removeFavorite(spotId));
   return { favoritesMap, addFavorite: add, removeFavorite: remove };
