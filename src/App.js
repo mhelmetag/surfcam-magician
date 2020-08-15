@@ -3,12 +3,22 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import SurfCamContainer from "./components/SurfCamContainer";
 import Breadcrumb from "./components/Breadcrumb";
+import { useFavorites } from "./hooks/useFavorites";
 
 // Main Quote - When you're itching for the waves, the only lotion is the ocean.
 // 404 - Just 'cause you're riding the high tide, doesn't mean you've chosen the right course.
 // Error - Sometimes, the bird sings, sometimes it coughs up a worm.
 
 const App = () => {
+  const favorites = useFavorites();
+
+  const favoritesLinks = Object.entries(favorites.favoritesMap).map(([spotId, spotTitle]) => (
+    <span style={{ padding: '10px' }}>
+      {'⭐️ '}
+      <a key={spotId} href={`/spot/${spotId}`}>{spotTitle}</a>
+    </span>
+  ));
+
   return (
     <Router>
       <header
@@ -31,9 +41,16 @@ const App = () => {
                   href="https://github.com/mhelmetag/surfcam-magician"
                 >
                   <span className="icon is-large">
-                    <i className="fab fa-lg fa-github has-text-white"></i>
+                    <i className="fab fa-lg fa-github has-text-white" />
                   </span>
                 </a>
+              </div>
+            </div>
+          </div>
+          <div className="level">
+            <div className="level-left">
+              <div className="level-item">
+                {favoritesLinks}
               </div>
             </div>
           </div>
@@ -43,10 +60,10 @@ const App = () => {
         <div className="container is-fluid">
           <Switch>
             <Route path="/spot/:id">
-              <SurfCamContainer />
+              <SurfCamContainer favorites={favorites} />
             </Route>
             <Route path="/">
-              <SurfCamContainer defaultSpotId="584204204e65fad6a77096b1" />
+              <SurfCamContainer favorites={favorites} defaultSpotId="584204204e65fad6a77096b1" />
             </Route>
           </Switch>
         </div>
