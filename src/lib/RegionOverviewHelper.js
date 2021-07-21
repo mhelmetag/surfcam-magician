@@ -1,6 +1,6 @@
 // A class with a few helpers to take a spotId and end up with an array of streamUrls
 // through the region overview service
-class RegionOverviewHelper {
+export default class RegionOverviewHelper {
   // Takes 584204204e65fad6a77096b1
   // and returns https://services.surfline.com/kbyg/regions/overview?spotId=584204204e65fad6a77096b1
   generateSpotOverviewUrl(spotId) {
@@ -53,5 +53,3 @@ class RegionOverviewHelper {
     });
   }
 }
-
-export default RegionOverviewHelper;
