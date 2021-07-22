@@ -29,12 +29,16 @@ const SurfCamContainer = ({ defaultSpotId }) => {
 
   return (
     <>
-      <div className="level">
+      <div className="level is-mobile">
         <div className="level-left">
-          <button className="button level-item" style={{ marginRight: '10px' }} onClick={onFavoriteClick}>
-            {isFavorite ? "Unfavorite" : "Favorite"}
-          </button>
-          <span className="level-item">{title}</span>
+          <div className="level-item">
+            <button className="button" onClick={onFavoriteClick}>
+              {isFavorite ? "Unfavorite" : "Favorite"}
+            </button>
+          </div>
+          <div className="level-item">
+            <span>{title}</span>
+          </div>
         </div>
       </div>
       <div className="columns">

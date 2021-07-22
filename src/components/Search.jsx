@@ -1,28 +1,18 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import useSearch from "../hooks/useSearch";
 
 import "./Search.css";
 
-const Spot = ({ spot }) => {
-  let history = useHistory();
-
+const SpotLink = ({ spot }) => {
   if (spot.hasCameras) {
     return (
-      <div
-        className="clickable"
-        onClick={() => history.push(`/spot/${spot.id}`)}
-      >
-        <i className="fa fa-camera" />
-        {spot.name}
-      </div>
+      <Link className="link clickable" to={`/spot/${spot.id}`}><i className="fa fa-camera" /> {spot.name}</Link>
     );
   } else {
     return (
-      <div>
-        {spot.name}
-      </div>
+      <span>{spot.name}</span>
     );
   }
 };
@@ -36,7 +26,9 @@ const Search = () => {
 
   return (
     <>
-      <input className="input" type="text" placeholder="Ventura Point" value={query} onChange={updateQuery} />
+      <div className="control is-large">
+        <input className="input is-large" type="text" placeholder="Ventura Point" value={query} onChange={updateQuery} />
+      </div>
       <div
         style={{
           display: "flex",
@@ -44,11 +36,12 @@ const Search = () => {
           flexDirection: "column",
           height: "40vh",
           overflowX: "scroll",
+          marginTop: "3vh"
         }}
       >
         {spots.map((spot) => {
           return (
-            <Spot key={spot.id} spot={spot} />
+            <SpotLink key={spot.id} spot={spot} />
           );
         })}
       </div>

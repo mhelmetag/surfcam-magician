@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import SearchHelper from "../lib/SearchHelper";
 
 export default function useStreamUrls(spotId) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [spots, setSpots] = useState([]);
 
   async function fetchAndSet(query) {
@@ -17,7 +17,7 @@ export default function useStreamUrls(spotId) {
   }
 
   useEffect(() => {
-    if (query !== '') {
+    if (query !== "") {
       fetchAndSet(query);
     } else {
       setSpots([]);
