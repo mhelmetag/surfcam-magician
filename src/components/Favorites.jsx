@@ -7,8 +7,8 @@ const Favorites = () => {
 
   if (favorites && Object.keys(favorites).length > 0) {
     return Object.entries(favorites).map(([spotId, spotTitle]) => (
-      <span key={spotId} style={{ padding: '10px' }}>
-        {'⭐️ '}
+      <span key={spotId} style={{ padding: "10px" }}>
+        <i className="fa fa-star" />
         <a href={`/spot/${spotId}`}>{spotTitle}</a>
       </span>
     ));

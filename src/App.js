@@ -23,8 +23,8 @@ const App = () => {
   })();
 
   return (
-    <Layout>
-      <Router>
+    <Router>
+      <Layout>
         <Switch>
           <Route path="/spot/:id">
             <SurfCamContainer />
@@ -33,8 +33,8 @@ const App = () => {
             <SurfCamContainer defaultSpotId={defaultSpotId} />
           </Route>
         </Switch>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 };
 

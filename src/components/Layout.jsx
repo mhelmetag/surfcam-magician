@@ -1,6 +1,7 @@
 import React from "react";
 
 import Favorites from "./Favorites";
+import Search from "./Search";
 
 const Layout = ({ children }) => {
   return (
@@ -28,7 +29,7 @@ const Layout = ({ children }) => {
       </section>
       <section className="section">
         <div className="container is-fluid">
-          <p>Search...</p>
+          <Search />
         </div>
       </section>
       <footer className="footer">

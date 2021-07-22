@@ -7,10 +7,6 @@ export default class RegionOverviewHelper {
     return `https://services.surfline.com/kbyg/regions/overview?spotId=${spotId}`;
   }
 
-  generateRegionOverviewUrl(regionId) {
-    return `https://services.surfline.com/kbyg/regions/overview?subregionId=${regionId}`;
-  }
-
   // To return a region overview
   async fetchRegionOverview(spotOverviewUrl) {
     return fetch(spotOverviewUrl)
@@ -46,9 +42,9 @@ export default class RegionOverviewHelper {
   processRegionOverview(regionOverview) {
     return regionOverview.data.spots.map(spot => {
       return {
-        name: spot.name,
         id: spot._id,
-        hasCameras: spot.cameras.length >= 1
+        name: spot.name,
+        hasCameras: spot.cameras.length > 0
       };
     });
   }

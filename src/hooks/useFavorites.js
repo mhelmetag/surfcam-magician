@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const STORAGE_KEY = 'surfcam_magician_favorites';
+const STORAGE_KEY = "surfcam_magician_favorites";
 
 function getFavorites() {
-  const favoritesString = window.localStorage.getItem(STORAGE_KEY) || '{}';
+  const favoritesString = window.localStorage.getItem(STORAGE_KEY) || "{}";
 
   return JSON.parse(favoritesString);
 }
