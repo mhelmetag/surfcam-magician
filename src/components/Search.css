@@ -1,3 +1,8 @@
+.link {
+  color: #4a4a4a;
+  text-decoration: none;
+}
+
 .clickable:hover {
   color: turquoise;
   cursor: pointer;

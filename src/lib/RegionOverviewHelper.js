@@ -1,14 +1,10 @@
 // A class with a few helpers to take a spotId and end up with an array of streamUrls
 // through the region overview service
-class RegionOverviewHelper {
+export default class RegionOverviewHelper {
   // Takes 584204204e65fad6a77096b1
   // and returns https://services.surfline.com/kbyg/regions/overview?spotId=584204204e65fad6a77096b1
   generateSpotOverviewUrl(spotId) {
     return `https://services.surfline.com/kbyg/regions/overview?spotId=${spotId}`;
-  }
-
-  generateRegionOverviewUrl(regionId) {
-    return `https://services.surfline.com/kbyg/regions/overview?subregionId=${regionId}`;
   }
 
   // To return a region overview
@@ -46,12 +42,10 @@ class RegionOverviewHelper {
   processRegionOverview(regionOverview) {
     return regionOverview.data.spots.map(spot => {
       return {
-        name: spot.name,
         id: spot._id,
-        hasCameras: spot.cameras.length >= 1
+        name: spot.name,
+        hasCameras: spot.cameras.length > 0
       };
     });
   }
 }
-
-export default RegionOverviewHelper;
