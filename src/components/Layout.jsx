@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Favorites from "./Favorites";
 import Search from "./Search";
 
-const Layout = ({ children }) => {
+const Layout = ({ favorites, children }) => {
   return (
     <>
       <section
@@ -19,7 +20,7 @@ const Layout = ({ children }) => {
       </section>
       <section className="section">
         <div className="container is-fluid">
-          <Favorites />
+          <Favorites favorites={favorites} />
         </div>
       </section>
       <section className="section">
@@ -39,6 +40,10 @@ const Layout = ({ children }) => {
       </footer>
     </>
   );
+};
+
+Layout.propTypes = {
+  favorites: PropTypes.object.isRequired
 };
 
 export default Layout;

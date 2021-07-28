@@ -3,16 +3,14 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import useStreamUrls from "../hooks/useStreamUrls";
-import useFavorites from "../hooks/useFavorites";
 
 import SurfCam from "./SurfCam";
 
-const SurfCamContainer = ({ defaultSpotId }) => {
+const SurfCamContainer = ({ defaultSpotId, favorites, addFavorite, removeFavorite }) => {
   const { id } = useParams();
   const spotId = defaultSpotId ? defaultSpotId : id;
 
   const { streamUrls, spotName } = useStreamUrls(spotId);
-  const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   const title = spotName || spotId;
   document.title = `Surfcam Magician - ${title}`;
@@ -51,7 +49,10 @@ const SurfCamContainer = ({ defaultSpotId }) => {
 };
 
 SurfCamContainer.propTypes = {
-  defaultSpotId: PropTypes.string
+  defaultSpotId: PropTypes.string,
+  favorites: PropTypes.object.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  removeFavorite: PropTypes.func.isRequired
 };
 
 export default SurfCamContainer;
