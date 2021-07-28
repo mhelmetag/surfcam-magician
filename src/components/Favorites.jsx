@@ -1,13 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
-import useFavorites from "../hooks/useFavorites";
 
 import "./Favorites.css";
 
-const Favorites = () => {
-  const { favorites } = useFavorites();
-
+const Favorites = ({favorites}) => {
   if (favorites && Object.keys(favorites).length > 0) {
     return (
       <div
@@ -30,5 +27,10 @@ const Favorites = () => {
     );
   }
 };
+
+Favorites.propTypes = {
+  favorites: PropTypes.object.isRequired
+};
+
 
 export default Favorites;

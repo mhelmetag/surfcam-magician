@@ -12,7 +12,7 @@ import useFavorites from "./hooks/useFavorites";
 const DEFAULT_SPOT_ID = "584204204e65fad6a77096b1";
 
 const App = () => {
-  const { favorites } = useFavorites();
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
 
   const defaultSpotId = (() => {
     if (favorites && Object.keys(favorites).length > 0) {
@@ -24,13 +24,22 @@ const App = () => {
 
   return (
     <Router>
-      <Layout>
+      <Layout favorites={favorites}>
         <Switch>
           <Route path="/spot/:id">
-            <SurfCamContainer />
+            <SurfCamContainer
+              favorites={favorites}
+              addFavorite={addFavorite}
+              removeFavorite={removeFavorite}
+            />
           </Route>
           <Route path="/">
-            <SurfCamContainer defaultSpotId={defaultSpotId} />
+            <SurfCamContainer
+              defaultSpotId={defaultSpotId}
+              favorites={favorites}
+              addFavorite={addFavorite}
+              removeFavorite={removeFavorite}
+            />
           </Route>
         </Switch>
       </Layout>
