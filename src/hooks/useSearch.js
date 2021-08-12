@@ -10,7 +10,8 @@ export default function useStreamUrls(spotId) {
     const searchHelper = new SearchHelper();
     const searchUrl = searchHelper.generateSearchUrl(query);
     const searchResults = await searchHelper.fetchSearchResults(searchUrl);
-    const spotSearchResults = searchHelper.filterSearchResultsForSpots(searchResults);
+    const spotSearchResults =
+      searchHelper.filterSearchResultsForSpots(searchResults);
     const spots = searchHelper.processSpotSearchResults(spotSearchResults);
 
     setSpots(spots);

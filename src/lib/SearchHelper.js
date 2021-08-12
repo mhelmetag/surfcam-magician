@@ -4,8 +4,12 @@ export default class SearchHelper {
   }
 
   async fetchSearchResults(searchUrl) {
-    return fetch(searchUrl)
-      .then(response => {
+    return fetch(searchUrl, {
+      mode: "cors",
+      credentials: "same-origin",
+      referrerPolicy: "no-referrer",
+    })
+      .then((response) => {
         if (response.ok) {
           return response.json();
         }
@@ -14,8 +18,8 @@ export default class SearchHelper {
           `Unexpected response while fetching region overview! HTTP status was ${response.status}`
         );
       })
-      .then(data => data)
-      .catch(error => {
+      .then((data) => data)
+      .catch((error) => {
         throw Error(error.message);
       });
   }
@@ -30,7 +34,7 @@ export default class SearchHelper {
       return {
         id: spotSearchResult._id,
         name: spotSearchResult._source.name,
-        hasCameras: spotSearchResult._source.cams.length > 0
+        hasCameras: spotSearchResult._source.cams.length > 0,
       };
     });
   }

@@ -6,7 +6,12 @@ import useStreamUrls from "../hooks/useStreamUrls";
 
 import SurfCam from "./SurfCam";
 
-const SurfCamContainer = ({ defaultSpotId, favorites, addFavorite, removeFavorite }) => {
+const SurfCamContainer = ({
+  defaultSpotId,
+  favorites,
+  addFavorite,
+  removeFavorite,
+}) => {
   const { id } = useParams();
   const spotId = defaultSpotId ? defaultSpotId : id;
 
@@ -52,7 +57,7 @@ SurfCamContainer.propTypes = {
   defaultSpotId: PropTypes.string,
   favorites: PropTypes.object.isRequired,
   addFavorite: PropTypes.func.isRequired,
-  removeFavorite: PropTypes.func.isRequired
+  removeFavorite: PropTypes.func.isRequired,
 };
 
 export default SurfCamContainer;

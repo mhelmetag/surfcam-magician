@@ -8,12 +8,12 @@ import "./Search.css";
 const SpotLink = ({ spot }) => {
   if (spot.hasCameras) {
     return (
-      <Link className="link clickable" to={`/spot/${spot.id}`}><i className="fa fa-camera" /> {spot.name}</Link>
+      <Link className="link clickable" to={`/spot/${spot.id}`}>
+        <i className="fa fa-camera" /> {spot.name}
+      </Link>
     );
   } else {
-    return (
-      <span>{spot.name}</span>
-    );
+    return <span>{spot.name}</span>;
   }
 };
 
@@ -27,7 +27,13 @@ const Search = () => {
   return (
     <>
       <div className="control is-large">
-        <input className="input is-large" type="text" placeholder="Ventura Point" value={query} onChange={updateQuery} />
+        <input
+          className="input is-large"
+          type="text"
+          placeholder="Ventura Point"
+          value={query}
+          onChange={updateQuery}
+        />
       </div>
       <div
         style={{
@@ -36,13 +42,11 @@ const Search = () => {
           flexDirection: "column",
           height: "40vh",
           overflowX: "scroll",
-          marginTop: "3vh"
+          marginTop: "3vh",
         }}
       >
         {spots.map((spot) => {
-          return (
-            <SpotLink key={spot.id} spot={spot} />
-          );
+          return <SpotLink key={spot.id} spot={spot} />;
         })}
       </div>
     </>

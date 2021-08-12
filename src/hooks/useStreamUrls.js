@@ -8,9 +8,8 @@ export default function useStreamUrls(spotId) {
 
   async function fetchAndSet(spotId) {
     const regionOverviewHelper = new RegionOverviewHelper();
-    const spotOverviewUrl = regionOverviewHelper.generateSpotOverviewUrl(
-      spotId
-    );
+    const spotOverviewUrl =
+      regionOverviewHelper.generateSpotOverviewUrl(spotId);
     const regionOverview = await regionOverviewHelper.fetchRegionOverview(
       spotOverviewUrl
     );

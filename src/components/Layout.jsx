@@ -15,7 +15,9 @@ const Layout = ({ favorites, children }) => {
       >
         <div className="container">
           <h1 className="title has-text-white">Surfcam Magician</h1>
-          <h2 className="subtitle has-text-light">When you're itching for the waves, the only lotion is the ocean</h2>
+          <h2 className="subtitle has-text-light">
+            When you're itching for the waves, the only lotion is the ocean
+          </h2>
         </div>
       </section>
       <section className="section">
@@ -24,9 +26,7 @@ const Layout = ({ favorites, children }) => {
         </div>
       </section>
       <section className="section">
-        <div className="container is-fluid">
-          {children}
-        </div>
+        <div className="container is-fluid">{children}</div>
       </section>
       <section className="section">
         <div className="container is-fluid">
@@ -43,7 +43,7 @@ const Layout = ({ favorites, children }) => {
 };
 
 Layout.propTypes = {
-  favorites: PropTypes.object.isRequired
+  favorites: PropTypes.object.isRequired,
 };
 
 export default Layout;
