@@ -5,9 +5,7 @@ export default class SearchHelper {
 
   async fetchSearchResults(searchUrl) {
     return fetch(searchUrl, {
-      mode: "cors",
-      credentials: "same-origin",
-      referrerPolicy: "no-referrer",
+      mode: "no-cors",
     })
       .then((response) => {
         if (response.ok) {

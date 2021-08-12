@@ -10,9 +10,7 @@ export default class RegionOverviewHelper {
   // To return a region overview
   async fetchRegionOverview(spotOverviewUrl) {
     return fetch(spotOverviewUrl, {
-      mode: "cors",
-      credentials: "same-origin",
-      referrerPolicy: "no-referrer",
+      mode: "no-cors",
     })
       .then((response) => {
         if (response.ok) {
