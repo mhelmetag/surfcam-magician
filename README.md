@@ -1,6 +1,6 @@
 # Surfcam Magician
 
-**Note:** Surfline finally started blocking cross origin requests so I've stopped hosting this publically. It's possible to get around this but I'm going to stop hosting a site that makes direct requests so I don't totally ruin access to their APIs. Feel free to host locally and tinker away!
+**Note:** Surfline finally started blocking cross origin requests so I've stopped hosting this publicly. It's possible to get around this but I'm going to stop hosting a site that makes direct requests so I don't totally ruin access to their APIs. Feel free to host locally and tinker away!
 
 Watch HD surfcams for free and forever with no ads!
 
