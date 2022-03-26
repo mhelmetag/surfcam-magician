@@ -1,0 +1,20 @@
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/kbyg/*"
+  to = "https://services.surfline.com/:splat"
+  status = "200"
+  [redirects.headers]
+    Accept = "application/json"
+    User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36"
+
+[[redirects]]
+  from = "/cdn-wc/*"
+  to = "https://cams.cdn-surfline.com/:splat"
+  status = "200"
+  [redirects.headers]
+    Accept = "application/json"
+    User-Agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36"
