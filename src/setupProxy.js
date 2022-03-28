@@ -2,17 +2,25 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
-    "/cdn-wc",
+    "/kbyg",
     createProxyMiddleware({
-      target: "https://cams.cdn-surfline.com",
+      target: "https://services.surfline.com",
       changeOrigin: true,
     })
   );
 
   app.use(
-    "/kbyg",
+    "/search",
     createProxyMiddleware({
       target: "https://services.surfline.com",
+      changeOrigin: true,
+    })
+  );
+
+  app.use(
+    "/cdn*",
+    createProxyMiddleware({
+      target: "https://cams.cdn-surfline.com",
       changeOrigin: true,
     })
   );
