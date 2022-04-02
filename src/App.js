@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import SurfCamContainer from "./components/SurfCamContainer";
@@ -25,23 +25,29 @@ const App = () => {
   return (
     <Router>
       <Layout favorites={favorites}>
-        <Switch>
-          <Route path="/spot/:id">
-            <SurfCamContainer
-              favorites={favorites}
-              addFavorite={addFavorite}
-              removeFavorite={removeFavorite}
-            />
-          </Route>
-          <Route path="/">
-            <SurfCamContainer
-              defaultSpotId={defaultSpotId}
-              favorites={favorites}
-              addFavorite={addFavorite}
-              removeFavorite={removeFavorite}
-            />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path="/spot/:id"
+            element={
+              <SurfCamContainer
+                favorites={favorites}
+                addFavorite={addFavorite}
+                removeFavorite={removeFavorite}
+              />
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <SurfCamContainer
+                defaultSpotId={defaultSpotId}
+                favorites={favorites}
+                addFavorite={addFavorite}
+                removeFavorite={removeFavorite}
+              />
+            }
+          />
+        </Routes>
       </Layout>
     </Router>
   );
