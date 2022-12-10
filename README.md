@@ -18,15 +18,15 @@ Like any `create-react-app`-based app, use:
 yarn start
 ```
 
-## Credits
-
-Icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/).
-
-Quotes by [Uncle Tito](https://rocketpower.fandom.com/wiki/Tito_Makani).
-
 ## Screenshots
 
 ![magician-favorites](.github/screenshots/magician-favorites.png)
 
 ![magician-search-1](.github/screenshots/magician-search-1.png)
+
+## Credits
+
+Icon made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/).
+
+Quotes by [Uncle Tito](https://rocketpower.fandom.com/wiki/Tito_Makani).
 
