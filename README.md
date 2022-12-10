@@ -26,6 +26,7 @@ Quotes by [Uncle Tito](https://rocketpower.fandom.com/wiki/Tito_Makani).
 
 ## Screenshots
 
-![magician-favorites](.github/screenshots/magician-favorites.jpg)
+![magician-favorites](.github/screenshots/magician-favorites.png)
 
-![magician-search-1](.github/screenshots/magician-search-1.jpg)
+![magician-search-1](.github/screenshots/magician-search-1.png)
+
