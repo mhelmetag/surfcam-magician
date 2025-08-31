@@ -11,7 +11,7 @@
     "react-scripts": "5.0.0"
   },
   "devDependencies": {
-    "http-proxy-middleware": "2.0.4",
+    "http-proxy-middleware": "2.0.9",
     "prop-types": "15.8.1"
   },
   "scripts": {
