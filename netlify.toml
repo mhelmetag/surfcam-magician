@@ -1,19 +1,25 @@
 [[redirects]]
-  from = "/spot/*"
-  to = "/index.html"
-  status = 200
+from = "/spot/*"
+to = "/index.html"
+status = 200
 
 [[redirects]]
-  from = "/kbyg/*"
-  to = "https://services.surfline.com/kbyg/:splat"
-  status = 200
+from = "/kbyg/*"
+to = "https://services.surfline.com/kbyg/:splat"
+status = 200
 
 [[redirects]]
-  from = "/search/*"
-  to = "https://services.surfline.com/search/:splat"
-  status = 200
+from = "/search/*"
+to = "https://services.surfline.com/search/:splat"
+status = 200
 
 [[redirects]]
-  from = "/cdn*"
-  to = "https://cams.cdn-surfline.com/cdn:splat"
-  status = 200
+from = "/cdn*"
+to = "https://cams.cdn-surfline.com/cdn:splat"
+status = 200
+
+[[redirects]]
+from = "/oregon*"
+to = "https://hls.cdn-surfline.com/oregon:splat"
+status = 200
+headers = { user-agent = "Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G973U) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile Safari/537.36" }
