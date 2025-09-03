@@ -9,13 +9,13 @@ export default class RegionOverviewHelper {
 
   // To return a region overview
   async fetchRegionOverview(spotOverviewUrl) {
-    // // Rewrite URL to local call
-    // const localSpotOverviewUrl = spotOverviewUrl.replace(
-    //   "https://services.surfline.com",
-    //   ""
-    // );
+    // Rewrite URL to local call
+    const localSpotOverviewUrl = spotOverviewUrl.replace(
+      "https://services.surfline.com",
+      ""
+    );
 
-    return fetch(spotOverviewUrl)
+    return fetch(localSpotOverviewUrl)
       .then((response) => {
         if (response.ok) {
           return response.json();
