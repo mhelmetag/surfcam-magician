@@ -5,6 +5,13 @@ status = 200
 
 
 [[redirects]]
+from = "/kbyg/*"
+to = "https://services.surfline.com/kbyg/:splat"
+status = 200
+headers = { host = "services.surfline.com", user-agent = "Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G973U) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile Safari/537.36" }
+
+
+[[redirects]]
 from = "/search/*"
 to = "https://services.surfline.com/search/:splat"
 status = 200
