@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import SearchHelper from "../lib/SearchHelper";
 
-export default function useStreamUrls(spotId) {
+export default function useSearch(spotId) {
   const [query, setQuery] = useState("");
   const [spots, setSpots] = useState([]);
 

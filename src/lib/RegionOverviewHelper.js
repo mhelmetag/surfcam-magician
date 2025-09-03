@@ -46,7 +46,7 @@ export default class RegionOverviewHelper {
     return regionOverview.cameras
       .map((camera) => camera.streamUrl)
       .map((streamUrl) =>
-        streamUrl.replace("https://cams.cdn-surfline.com", "")
+        streamUrl.replace("https://hls.cdn-surfline.com", "")
       );
   }
 
