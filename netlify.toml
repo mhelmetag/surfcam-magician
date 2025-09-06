@@ -11,6 +11,7 @@ status = 200
 [redirects.headers]
 origin = "surfline.com"
 host = "services.surfline.com"
+referer = "surfline.com"
 
 [[redirects]]
 from = "/search/*"
