@@ -14,6 +14,7 @@ export default class RegionOverviewHelper {
       "https://services.surfline.com",
       ""
     );
+    // const localSpotOverviewUrl = spotOverviewUrl;
 
     return fetch(localSpotOverviewUrl)
       .then((response) => {

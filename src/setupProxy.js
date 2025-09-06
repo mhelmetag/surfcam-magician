@@ -4,7 +4,7 @@ const UA_HEADER_NAME = "user-agent";
 const UA_SPOOF =
   "Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G973U) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile Safari/537.36";
 
-const DEBUG = false;
+const DEBUG = true;
 const log = (...args) => {
   if (DEBUG) {
     console.log(...args);
@@ -28,6 +28,9 @@ function logReq(proxyReq, req, res) {
   log(`\n--- Proxying Request ---`);
   log(`From: ${req.headers.host}`);
   log(`To: ${proxyReq.protocol}//${proxyReq.host}${proxyReq.path}`);
+
+  log(`\n<<< Final Request to Host >>>`);
+  log(`Headers:`, proxyReq.getHeaders());
 }
 
 module.exports = function (app) {
@@ -47,7 +50,14 @@ module.exports = function (app) {
     createProxyMiddleware({
       target: "https://services.surfline.com",
       changeOrigin: true,
-      onProxyReq: logReq,
+      onProxyReq: (proxyReq, req, res) => {
+        // proxyReq.setHeader("referer", "services.surfline.com");
+        // proxyReq.setHeader("referer", "foo.bar");
+        // proxyReq.setHeader("origin", "surfline.com");
+        proxyReq.setHeader("origin", "foo.bar");
+
+        logReq(proxyReq, req, res);
+      },
       onProxyRes: logRes,
     })
   );
