@@ -10,6 +10,7 @@ status = 200
 
 [redirects.headers]
 origin = "surfline.com"
+host = "services.surfline.com"
 
 [[redirects]]
 from = "/search/*"
