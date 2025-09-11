@@ -17,7 +17,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "getStreamUrls": "node ./scripts/getStreamUrls.js"
   },
   "eslintConfig": {
     "extends": "react-app",
