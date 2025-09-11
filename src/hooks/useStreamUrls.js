@@ -1,28 +1,12 @@
-import { useState, useEffect } from "react";
+import spots from "../spots.json";
 
-import RegionOverviewHelper from "../lib/RegionOverviewHelper";
+export function getStreamUrls(spotId) {
+  const spot = spots.find((spot) => {
+    return spot.id === spotId;
+  });
+  const streamUrls = spot.cameras.map((camera) => {
+    return camera.streamUrl.replace("https://hls.cdn-surfline.com", "");
+  });
 
-export default function useStreamUrls(spotId) {
-  const [streamUrls, setStreamUrls] = useState([]);
-  const [spotName, setSpotName] = useState(null);
-
-  async function fetchAndSet(spotId) {
-    const regionOverviewHelper = new RegionOverviewHelper();
-    const spotOverviewUrl =
-      regionOverviewHelper.generateSpotOverviewUrl(spotId);
-    const regionOverview = await regionOverviewHelper.fetchRegionOverview(
-      spotOverviewUrl
-    );
-    const spotInfo = regionOverviewHelper.findSpot(regionOverview, spotId);
-    const streamUrls = regionOverviewHelper.parseStreamUrls(spotInfo);
-
-    setSpotName(spotInfo.name);
-    setStreamUrls(streamUrls);
-  }
-
-  useEffect(() => {
-    fetchAndSet(spotId);
-  }, [spotId]);
-
-  return { streamUrls, spotName };
+  return { streamUrls, spotName: spot.name };
 }
